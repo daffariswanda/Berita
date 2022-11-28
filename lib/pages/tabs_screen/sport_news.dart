@@ -7,20 +7,20 @@ import 'package:http/http.dart' as http;
 // import halaman detial
 import '../detail_news.dart';
 
-class NewsTab extends StatelessWidget {
-  const NewsTab({super.key});
+class SportNewsTab extends StatelessWidget {
+  const SportNewsTab({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Berita Terkini'),
+        title: const Text('Sport News'),
         elevation: 0.0,
       ),
       body: FutureBuilder<List<dynamic>>(
         future: _fetchNews(),
         builder: (context, snapshot) {
-          // pwngkonsian jika data berhasil di ambil
+          // pengkonsian jika data berhasil di ambil
           if (snapshot.hasData) {
             return ListView.builder(
               itemCount: snapshot.data!.length - 1,
@@ -84,7 +84,7 @@ class NewsTab extends StatelessWidget {
 // fungsi mengambil data dari APi
 Future<List<dynamic>> _fetchNews() async {
   var result = await http.get(Uri.parse(
-      'https://newsapi.org/v2/top-headlines?country=id&apiKey=d2c05541c3be436184fe4573b7d70221'));
+      'https://newsapi.org/v2/top-headlines?country=id&category=sports&apiKey=d2c05541c3be436184fe4573b7d70221'));
   var response = json.decode(result.body)['articles'];
   return response;
 }
